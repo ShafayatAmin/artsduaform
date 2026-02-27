@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>দাখিল–২০২৬ দোয়া অনুষ্ঠানের তথ্য ফর্ম</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ===== CSS RESET & BASE ===== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-dark: #0a0f0d;
+            --bg-gradient-start: #050a08;
+            --bg-gradient-end: #0d1a14;
+            --glass-bg: rgba(20, 40, 30, 0.4);
+            --glass-border: rgba(0, 255, 136, 0.15);
+            --glass-glow: rgba(0, 255, 136, 0.1);
+            --accent-green: #00ff88;
+            --accent-cyan: #00d4ff;
+            --accent-teal: #00ffc8;
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.7);
+            --text-muted: rgba(255, 255, 255, 0.5);
+            --error: #ff4757;
+            --success: #00ff88;
+            --card-radius: 20px;
+            --input-radius: 12px;
+            --font-bengali: 'Noto Sans Bengali', sans-serif;
+        }
+
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-bengali);
+            background: linear-gradient(145deg, var(--bg-gradient-start) 0%, var(--bg-dark) 50%, var(--bg-gradient-end) 100%);
+            min-height: 100vh;
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ===== ANIMATED BACKGROUND ===== */
+        .bg-effects {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .glow-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .glow-orb-1 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, var(--accent-green) 0%, transparent 70%);
+            top: -100px;
+            right: -100px;
+            animation-delay: 0s;
+        }
+
+        .glow-orb-2 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, var(--accent-cyan) 0%, transparent 70%);
+            bottom: -150px;
+            left: -150px;
+            animation-delay: -7s;
+        }
+
+        .glow-orb-3 {
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, var(--accent-teal) 0%, transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-delay: -14s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(30px, -30px) scale(1.1); }
+            50% { transform: translate(-20px, 20px) scale(0.95); }
+            75% { transform: translate(20px, 30px) scale(1.05); }
+        }
+
+        /* ===== GRID PATTERN OVERLAY ===== */
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 136, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 136, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* ===== MAIN CONTAINER ===== */
+        .container {
+            position: relative;
+            z-index: 10;
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 20px 16px 40px;
+        }
+
+        /* ===== GLASSMORPHISM CARD ===== */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--card-radius);
+            padding: 24px 20px;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.4),
+                0 0 60px var(--glass-glow),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .glass-card:nth-child(1) { animation-delay: 0.1s; }
+        .glass-card:nth-child(2) { animation-delay: 0.2s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-green), transparent);
+            opacity: 0.5;
+        }
+
+        /* ===== HEADER CARD ===== */
+        .header-card h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-align: center;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+            text-shadow: 0 0 30px var(--glass-glow);
+            letter-spacing: 0.5px;
+        }
+
+        .header-card .description {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            text-align: center;
+            line-height: 1.8;
+        }
+
+        .header-card .description p {
+            margin-bottom: 12px;
+        }
+
+        .highlight-text {
+            color: var(--accent-green);
+            font-weight: 600;
+        }
+
+        /* ===== FORM STYLES ===== */
+
+        
+        .form-group {
+            margin-bottom: 18px;
+            position: relative;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            letter-spacing: 0.3px;
+        }
+
+        .form-input,
+        .form-select {
+            width: 100%;
+            padding: 14px 16px;
+            font-size: 1rem;
+            font-family: var(--font-bengali);
+            background: rgba(10, 20, 15, 0.6);
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            border-radius: var(--input-radius);
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .form-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .form-input:focus,
+        .form-select:focus {
+            border-color: var(--accent-green);
+            box-shadow: 
+                0 0 0 3px rgba(0, 255, 136, 0.1),
+                0 0 20px rgba(0, 255, 136, 0.15);
+        }
+
+        .form-select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%2300ff88' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            cursor: pointer;
+        }
+
+        .form-select option {
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            padding: 12px;
+        }
+
+        /* ===== MOBILE NUMBER INPUT ===== */
+        .mobile-input-wrapper {
+            display: flex;
+            gap: 8px;
+        }
+
+        .mobile-prefix {
+            flex-shrink: 0;
+            width: 60px;
+            padding: 14px 10px;
+            font-size: 1rem;
+            font-family: var(--font-bengali);
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            border-radius: var(--input-radius);
+            color: var(--accent-green);
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .mobile-input {
+            flex: 1;
+        }
+
+        /* ===== PAYMENT SECTION ===== */
+        .payment-section {
+            background: rgba(10, 25, 18, 0.5);
+            border: 1px solid rgba(0, 255, 136, 0.1);
+            border-radius: 16px;
+            padding: 20px;
+            margin-top: 24px;
+            margin-bottom: 24px;
+        }
+
+        .payment-title {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+
+        .payment-options {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .payment-radio {
+            display: none;
+        }
+
+        .payment-label {
+            flex: 1;
+            min-width: 120px;
+            padding: 14px 20px;
+            background: rgba(10, 20, 15, 0.6);
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .payment-label:hover {
+            border-color: rgba(0, 255, 136, 0.4);
+            background: rgba(0, 255, 136, 0.05);
+        }
+
+        .payment-radio:checked + .payment-label {
+            border-color: var(--accent-green);
+            background: rgba(0, 255, 136, 0.15);
+            color: var(--accent-green);
+            box-shadow: 
+                0 0 20px rgba(0, 255, 136, 0.2),
+                inset 0 0 20px rgba(0, 255, 136, 0.05);
+        }
+
+        /* ===== ERROR STYLES ===== */
+        .error-message {
+            display: none;
+            align-items: center;
+            gap: 6px;
+            margin-top: 8px;
+            padding: 10px 12px;
+            font-size: 0.8rem;
+            color: var(--error);
+            background: rgba(255, 71, 87, 0.08);
+            border-radius: var(--radius-sm);
+            animation: errorShake 0.4s ease-out;
+        }
+
+        .error-message.show {
+            display: flex;
+        }
+
+        @keyframes errorShake {
+            0%, 100% { transform: translateX(0); }
+            20% { transform: translateX(-8px); }
+            40% { transform: translateX(8px); }
+            60% { transform: translateX(-4px); }
+            80% { transform: translateX(4px); }
+        }
+
+        .form-group.has-error .error-message {
+            display: block;
+        }
+
+        .form-group.has-error .form-input,
+        .form-group.has-error .form-select {
+            border-color: var(--error);
+            animation: borderPulse 1s ease infinite;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        @keyframes borderPulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(255, 71, 87, 0.4); }
+            50% { box-shadow: 0 0 0 4px rgba(255, 71, 87, 0.2); }
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 16px 24px;
+            font-size: 1rem;
+            font-family: var(--font-bengali);
+            font-weight: 600;
+            border: none;
+            border-radius: var(--input-radius);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #00c853 0%, #00e676 50%, #00ff88 100%);
+            color: #0a0f0d;
+            box-shadow: 
+                0 4px 20px rgba(0, 255, 136, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 
+                0 8px 30px rgba(0, 255, 136, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #1a3a28 0%, #0d2818 100%);
+            color: var(--accent-green);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background: linear-gradient(135deg, #1f4a30 0%, #123520 100%);
+            border-color: rgba(0, 255, 136, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(0, 255, 136, 0.2);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        /* Button ripple effect */
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+
+        .btn:active::after {
+            width: 300px;
+            height: 300px;
+        }
+
+        /* ===== PREVIEW SECTION ===== */
+        .preview-section {
+            display: none;
+            margin-top: 24px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .preview-section.visible {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .preview-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--accent-green);
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .preview-card {
+            width: 100%;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 
+                0 10px 40px rgba(0, 0, 0, 0.5),
+                0 0 60px rgba(0, 255, 136, 0.1);
+        }
+
+        .preview-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .download-btn {
+            margin-top: 16px;
+            background: linear-gradient(135deg, #00bcd4 0%, #00d4ff 100%);
+            color: #0a0f0d;
+        }
+
+        /* ===== LOADING STATE ===== */
+        .loading {
+            position: relative;
+            pointer-events: none;
+        }
+
+        .loading::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(10, 15, 13, 0.8);
+            border-radius: inherit;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        .spinner {
+            width: 24px;
+            height: 24px;
+            border: 3px solid rgba(0, 255, 136, 0.2);
+            border-top-color: var(--accent-green);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .footer {
+    background-color: #23e976;
+    color: #020302;
+    padding: 20px 10px;
+    text-align: center;
+    font-family: sans-serif;
+}
+
+.footer-content p {
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+.contact-item {
+    color: #030303;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.contact-item:hover {
+    color: #1840f1;
+}
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 360px) {
+            html { font-size: 14px; }
+            .glass-card { padding: 20px 16px; }
+            .payment-options { flex-direction: column; }
+            .payment-label { min-width: auto; }
+        }
+
+        @media (min-width: 481px) {
+            .container {
+                padding: 40px 20px 60px;
+            }
+            .glass-card {
+                padding: 32px 28px;
+            }
+        }
+
+        /* ===== REDUCED MOTION ===== */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Effects -->
+    <div class="bg-effects">
+        <div class="glow-orb glow-orb-1"></div>
+        <div class="glow-orb glow-orb-2"></div>
+        <div class="glow-orb glow-orb-3"></div>
+    </div>
+    <div class="grid-overlay"></div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Header Info Card -->
+        <div class="glass-card header-card">
+<h1>দাখিল–২০২৬ দোয়া অনুষ্ঠানের তথ্য ফর্ম</h1>
+<div class="description">
+    <p>আসসালামু আলাইকুম ওয়া রাহমাতুল্লাহ!</p>
+    <p>দাখিল–২০২৬ পরীক্ষার <span class="highlight-text">দোয়া অনুষ্ঠান</span> আয়োজনের অংশ হিসেবে আপনার তথ্য সংগ্রহের জন্য এই ফর্মটি তৈরি করা হয়েছে।</p>
+    
+    <hr> <h3>প্যাকেজ সংক্রান্ত তথ্য:</h3>
+    <ul>
+        <li><strong>৪০০ টাকা:</strong> ডায়েরি ব্যতীত বাকি সব কিছু অন্তর্ভুক্ত।</li>
+        <li><strong>৬৫০ টাকা:</strong> T-Shirt ব্যতীত বাকি সব কিছু অন্তর্ভুক্ত।</li>
+        <li><strong>৮৫০ টাকা:</strong> সব কিছু (All-in-one) অন্তর্ভুক্ত।</li>
+    </ul>
+
+    <div style="background-color: #022c14; padding: 10px; border-left: 5px solid #23e26c; margin: 15px 0;">
+        <strong>⚠️ বিশেষ নির্দেশনাবলী:</strong>
+        <p>ফর্ম পূরণ শেষে অবশ্যই <strong>"Generate Card"</strong> বাটনে ক্লিক করতে হবে এবং প্রাপ্ত কার্ডটি ডাউনলোড করে সাথে জমা দিতে হবে।</p>
+    </div>
+
+    <p>অনুগ্রহ করে সঠিক তথ্য দিয়ে নিচের ফর্মটি পূরণ করুন।</p>
+</div>
+        </div>
+
+        <!-- Form Card -->
+        <div class="glass-card form-card">
+            <form id="infoForm" novalidate>
+                <!-- Name Field -->
+                <div class="form-group" id="nameGroup">
+                    <label class="form-label" for="name">নাম (বাংলায়)</label>
+                    <input type="text" id="name" name="name" class="form-input" placeholder="আপনার পূর্ণ নাম লিখুন" autocomplete="off">
+                    <span class="error-message">শুধুমাত্র বর্ণমালা এবং স্পেস ব্যবহার করুন</span>
+                </div>
+
+                <!-- Section Field -->
+                <div class="form-group" id="sectionGroup">
+                    <label class="form-label" for="section">সেকশন</label>
+                    <select id="section" name="section" class="form-select">
+                        <option value="">সেকশন নির্বাচন করুন</option>
+                        <option value="Science A">Science A</option>
+                        <option value="Science B">Science B</option>
+                        <option value="Arts A">Arts A</option>
+                        <option value="Arts B">Arts B</option>
+                    </select>
+                    <span class="error-message">সেকশন নির্বাচন করুন</span>
+                </div>
+
+                <!-- Roll Field -->
+                <div class="form-group" id="rollGroup">
+                    <label class="form-label" for="roll">রোল নম্বর</label>
+                    <select id="roll" name="roll" class="form-select">
+                        <option value="">রোল নম্বর নির্বাচন করুন</option>
+                    </select>
+                    <span class="error-message">রোল নম্বর নির্বাচন করুন</span>
+                </div>
+
+                <!-- Blood Group Field -->
+                <div class="form-group" id="bloodGroup">
+                    <label class="form-label" for="blood">ব্লাড গ্রুপ</label>
+                    <select id="blood" name="blood" class="form-select">
+                        <option value="">ব্লাড গ্রুপ নির্বাচন করুন</option>
+                        <option value="A+">A+</option>
+                        <option value="A-">A-</option>
+                        <option value="B+">B+</option>
+                        <option value="B-">B-</option>
+                        <option value="AB+">AB+</option>
+                        <option value="AB-">AB-</option>
+                        <option value="O+">O+</option>
+                        <option value="O-">O-</option>
+                    </select>
+                    <span class="error-message">ব্লাড গ্রুপ নির্বাচন করুন</span>
+                </div>
+
+                <!-- Mobile Number Field -->
+                <div class="form-group" id="mobileGroup">
+                    <label class="form-label" for="mobile">মোবাইল নম্বর</label>
+                    <div class="mobile-input-wrapper">
+                        <div class="mobile-prefix">+88</div>
+                        <input type="tel" id="mobile" name="mobile" class="form-input mobile-input" placeholder="01XXXXXXXXX" maxlength="11" autocomplete="off">
+                    </div>
+                    <span class="error-message">সঠিক ১১ সংখ্যার মোবাইল নম্বর দিন</span>
+                </div>
+
+                <!-- District Field -->
+                <div class="form-group" id="districtGroup">
+                    <label class="form-label" for="district">হোম জেলা</label>
+                    <input type="text" id="district" name="district" class="form-input" placeholder="আপনার জেলার নাম লিখুন" autocomplete="off">
+                    <span class="error-message">জেলার নাম লিখুন</span>
+                </div>
+
+                <!-- T-shirt Size Field -->
+                <div class="form-group" id="tshirtGroup">
+                    <label class="form-label" for="tshirt">টি-শার্ট সাইজ</label>
+                    <select id="tshirt" name="tshirt" class="form-select">
+                        <option value="">সাইজ নির্বাচন করুন</option>
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                        <option value="XXL">XXL</option>
+                        <option value="XXXL">XXXL</option>
+                    </select>
+                    <span class="error-message">টি-শার্ট সাইজ নির্বাচন করুন</span>
+                </div>
+
+                <div class="form-group" id="packageGroup">
+                    <label class="form-label" for="package">আপনি কোন পেকেজ নিতে চান?</label>
+                    <select id="package" name="package" class="form-select">
+                        <option value="">পেকেজ নির্বাচন করুন</option>
+                        <option value="400tk package">400tk package</option>
+                        <option value="650tk package">650tk package</option>
+                        <option value="850tk package">850tk package</option>
+                    </select>
+                    <span class="error-message">একটি পেকেজ নির্বাচন করুন</span>
+                </div>
+
+                <!-- Payment Section -->
+                <div class="payment-section">
+                    <p class="payment-title">আপনি কি Pay করেছেন? করে থাকলে নির্বাচন করুন কি উপায়ে pay করেছেন</p>
+                    <div class="payment-options">
+                        <input type="radio" id="nagad" name="payment" value="Nagad" class="payment-radio">
+                        <label for="nagad" class="payment-label">Nagad</label>
+                        
+                        <input type="radio" id="bkash" name="payment" value="Bkash" class="payment-radio">
+                        <label for="bkash" class="payment-label">Bkash</label>
+                    </div>
+                </div>
+
+                <!-- Buttons -->
+                <div class="btn-group">
+                    <button type="button" id="generateBtn" class="btn btn-primary">Generate Card</button>
+                    <button type="button" id="whatsappBtn" class="btn btn-secondary" disabled>Send to WhatsApp</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Preview Section -->
+        <div class="preview-section glass-card" id="previewSection">
+            <h3 class="preview-title">আপনার কার্ড প্রিভিউ</h3>
+            <div class="preview-card">
+                <img id="previewImage" src="" alt="Generated Card">
+            </div>
+            <button type="button" id="downloadBtn" class="btn download-btn">Download PNG</button>
+        </div>
+
+        <!-- Footer -->
+       <footer class="footer">
+    <div class="footer-content">
+        <p>© 2026 Developed by Shafu</p>
+        
+        <div class="contact-info">
+            <a href="imtiazshamsuddoha@gmail.com" class="contact-item">
+                <span>📧 imtiazshamsuddoha@gmail.com
+</span>
+            </a>
+            
+            <a href="tel:+8801813122155" class="contact-item">
+                <span>📞 +8801813122155 (Imtiaz)</span>
+            </a>
+            
+            <a href="https://web.facebook.com/samsuddoha.imtiaz" target="_blank" class="contact-item">
+                <span>🌐 Facebook: Imtiaz</span>
+            </a>
+        </div>
+    </div>
+</footer>
+    </div>
+
+    <script>
+        // ===== INITIALIZATION =====
+        document.addEventListener('DOMContentLoaded', function() {
+            // Generate roll numbers 01-140
+            const rollSelect = document.getElementById('roll');
+            for (let i = 1; i <= 140; i++) {
+                const option = document.createElement('option');
+                option.value = i.toString().padStart(2, '0');
+                option.textContent = i.toString().padStart(2, '0');
+                rollSelect.appendChild(option);
+            }
+
+            // Initialize form data storage
+            let generatedImageData = null;
+
+            // ===== DOM ELEMENTS =====
+            const form = document.getElementById('infoForm');
+            const nameInput = document.getElementById('name');
+            const sectionSelect = document.getElementById('section');
+            const rollSelectEl = document.getElementById('roll');
+            const bloodSelect = document.getElementById('blood');
+            const mobileInput = document.getElementById('mobile');
+            const districtInput = document.getElementById('district');
+            const tshirtSelect = document.getElementById('tshirt');
+            const packageSelect = document.getElementById('package')
+            const paymentRadios = document.querySelectorAll('input[name="payment"]');
+            const generateBtn = document.getElementById('generateBtn');
+            const whatsappBtn = document.getElementById('whatsappBtn');
+            const downloadBtn = document.getElementById('downloadBtn');
+            const previewSection = document.getElementById('previewSection');
+            const previewImage = document.getElementById('previewImage');
+
+            // ===== VALIDATION FUNCTIONS =====
+            function validateName(value) {
+                // Allow Bengali letters, English letters, and spaces
+                const regex = /^[\u0980-\u09FFa-zA-Z\s]+$/;
+                return value.trim().length > 0 && regex.test(value);
+            }
+
+            function validateMobile(value) {
+                // Must be 11 digits starting with 01
+                const regex = /^01[3-9]\d{8}$/;
+                return regex.test(value);
+            }
+
+            function validateDistrict(value) {
+                return value.trim().length > 0;
+            }
+
+            function validateSelect(value) {
+                return value && value.trim() !== '';
+            }
+
+            // ===== ERROR HANDLING =====
+            function showError(groupElement) {
+                if (groupElement) {
+                    groupElement.classList.add('has-error');
+                }
+            }
+
+            function clearError(groupElement) {
+                if (groupElement) {
+                    groupElement.classList.remove('has-error');
+                }
+            }
+
+            // ===== REAL-TIME VALIDATION =====
+            nameInput.addEventListener('input', function() {
+                const group = document.getElementById('nameGroup');
+                if (this.value.trim() === '') {
+                    clearError(group);
+                } else if (!validateName(this.value)) {
+                    showError(group);
+                } else {
+                    clearError(group);
+                }
+            });
+
+            mobileInput.addEventListener('input', function() {
+                // Only allow numbers and strictly limit to 11 digits
+                // Using slice to enforce hard limit even if maxlength fails
+                this.value = this.value.replace(/[^0-9]/g, '').slice(0, 11);
+                
+                const group = document.getElementById('mobileGroup');
+                if (this.value.length === 0) {
+                    clearError(group);
+                } else if (this.value.length === 11) {
+                    if (validateMobile(this.value)) {
+                        clearError(group);
+                    } else {
+                        showError(group);
+                    }
+                }
+            });
+
+            districtInput.addEventListener('input', function() {
+                const group = document.getElementById('districtGroup');
+                if (this.value.trim() === '') {
+                    clearError(group);
+                } else {
+                    clearError(group);
+                }
+            });
+
+            // ===== GET PAYMENT STATUS =====
+            function getPaymentStatus() {
+                const selectedPayment = document.querySelector('input[name="payment"]:checked');
+                if (!selectedPayment) {
+                    return 'Unpaid';
+                }
+                return `Paid (${selectedPayment.value})`;
+            }
+
+            // ===== FORM VALIDATION =====
+            function validateForm() {
+                let isValid = true;
+
+                // Validate name
+                const nameGroup = document.getElementById('nameGroup');
+                if (!validateName(nameInput.value)) {
+                    showError(nameGroup);
+                    isValid = false;
+                } else {
+                    clearError(nameGroup);
+                }
+
+                // Validate section
+                const sectionGroup = document.getElementById('sectionGroup');
+                if (!validateSelect(sectionSelect.value)) {
+                    showError(sectionGroup);
+                    isValid = false;
+                } else {
+                    clearError(sectionGroup);
+                }
+
+                // Validate roll
+                const rollGroup = document.getElementById('rollGroup');
+                if (!validateSelect(rollSelectEl.value)) {
+                    showError(rollGroup);
+                    isValid = false;
+                } else {
+                    clearError(rollGroup);
+                }
+
+                // Validate blood group
+                const bloodGroupEl = document.getElementById('bloodGroup');
+                if (!validateSelect(bloodSelect.value)) {
+                    showError(bloodGroupEl);
+                    isValid = false;
+                } else {
+                    clearError(bloodGroupEl);
+                }
+
+                // Validate mobile
+                const mobileGroup = document.getElementById('mobileGroup');
+                if (!validateMobile(mobileInput.value)) {
+                    showError(mobileGroup);
+                    isValid = false;
+                } else {
+                    clearError(mobileGroup);
+                }
+
+                // Validate district
+                const districtGroup = document.getElementById('districtGroup');
+                if (!validateDistrict(districtInput.value)) {
+                    showError(districtGroup);
+                    isValid = false;
+                } else {
+                    clearError(districtGroup);
+                }
+
+                // Validate t-shirt
+                const tshirtGroup = document.getElementById('tshirtGroup');
+                if (!validateSelect(tshirtSelect.value)) {
+                    showError(tshirtGroup);
+                    isValid = false;
+                } else {
+                    clearError(tshirtGroup);
+                }
+
+                return isValid;
+
+                const packageGroup = document.getElementById('packageGroup');
+                if (!validateSelect(packageSelect.value)) {
+                    showError(packageGroup);
+                    isValid = false;
+                } else {
+                    clearError(packageGroup);
+                }
+
+                return isValid;
+
+            }
+
+            // ===== CARD GENERATION =====
+            generateBtn.addEventListener('click', function() {
+                if (!validateForm()) {
+                    return;
+                }
+
+                // Show loading state
+                generateBtn.classList.add('loading');
+                generateBtn.innerHTML = '<span class="spinner"></span>';
+                generateBtn.disabled = true;
+
+                // Create canvas for card generation
+                const canvas = document.createElement('canvas');
+                canvas.width = 1080;
+                canvas.height = 1920;
+                const ctx = canvas.getContext('2d');
+
+                // Load template image
+                const templateImg = new Image();
+                templateImg.crossOrigin = 'anonymous';
+                
+                templateImg.onload = function() {
+                    // Draw template
+                    ctx.drawImage(templateImg, 0, 0, 1080, 1920);
+
+                    // Text styling
+                    ctx.fillStyle = '#ffffff';
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'middle';
+
+                    // Function to draw text with shadow
+                    function drawText(text, y) {
+                        // Shadow
+                        ctx.shadowColor = 'rgba(0, 0, 0, 0.8)';
+                        ctx.shadowBlur = 10;
+                        ctx.shadowOffsetX = 2;
+                        ctx.shadowOffsetY = 2;
+                        
+                        ctx.fillText(text, 540, y);
+                        
+                        // Reset shadow
+                        ctx.shadowColor = 'transparent';
+                        ctx.shadowBlur = 0;
+                        ctx.shadowOffsetX = 0;
+                        ctx.shadowOffsetY = 0;
+                    }
+
+                    // Draw all fields
+                    const nameValue = nameInput.value.trim();
+                    const sectionValue = sectionSelect.value;
+                    const rollValue = rollSelectEl.value;
+                    const bloodValue = bloodSelect.value;
+                    const mobileValue = '+88' + mobileInput.value;
+                    const districtValue = districtInput.value.trim();
+                    const tshirtValue = tshirtSelect.value;
+                    const paymentValue = getPaymentStatus();
+
+                    // Set font for each text
+                    ctx.font = 'bold 48px "Noto Sans Bengali", sans-serif';
+                    
+                    // Set position
+                    const positions = {
+                        name: 575,     
+                        section: 675,  
+                        roll: 790,    
+                        blood: 900,   
+                        mobile: 1020,   
+                        district: 1130, 
+                        tshirt: 1230,   
+                        payment: 1670   
+                    };
+
+                    // Letter spacing effect
+                    ctx.letterSpacing = '2px';
+
+                    drawText(nameValue, positions.name);
+                    drawText(sectionValue, positions.section);
+                    drawText(rollValue, positions.roll);
+                    drawText(bloodValue, positions.blood);
+                    drawText(mobileValue, positions.mobile);
+                    drawText(districtValue, positions.district);
+                    drawText(tshirtValue, positions.tshirt);
+                    drawText(paymentValue, positions.payment);
+
+                    // Get image data
+                    generatedImageData = canvas.toDataURL('image/png');
+
+                    // Update preview
+                    previewImage.src = generatedImageData;
+                    previewSection.classList.add('visible');
+
+                    // Enable buttons
+                    whatsappBtn.disabled = false;
+                    
+                    // Reset generate button
+                    generateBtn.classList.remove('loading');
+                    generateBtn.innerHTML = 'Generate Card';
+                    generateBtn.disabled = false;
+
+                    // Scroll to preview
+                    setTimeout(() => {
+                        previewSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }, 300);
+                };
+
+                templateImg.onerror = function() {
+                    // If template image fails to load, create a fallback card
+                    // Create gradient background
+                    const gradient = ctx.createLinearGradient(0, 0, 0, 1920);
+                    gradient.addColorStop(0, '#0a1510');
+                    gradient.addColorStop(0.5, '#0d1f18');
+                    gradient.addColorStop(1, '#081210');
+                    ctx.fillStyle = gradient;
+                    ctx.fillRect(0, 0, 1080, 1920);
+
+                    // Add decorative elements
+                    ctx.strokeStyle = 'rgba(0, 255, 136, 0.1)';
+                    ctx.lineWidth = 2;
+                    ctx.strokeRect(40, 40, 1000, 1840);
+
+                    // Add title
+                    ctx.fillStyle = '#00ff88';
+                    ctx.font = 'bold 52px "Noto Sans Bengali", sans-serif';
+                    ctx.textAlign = 'center';
+                    ctx.fillText('দাখিল–২০২৬', 540, 150);
+                    ctx.fillText('দোয়া অনুষ্ঠান', 540, 220);
+
+                    // Add divider
+                    ctx.strokeStyle = 'rgba(0, 255, 136, 0.3)';
+                    ctx.beginPath();
+                    ctx.moveTo(200, 280);
+                    ctx.lineTo(880, 280);
+                    ctx.stroke();
+
+                    // Text styling
+                    ctx.fillStyle = '#ffffff';
+                    ctx.font = 'bold 42px "Noto Sans Bengali", sans-serif';
+
+                    // Labels and values (positions adjusted upwards by 8px)
+                    const fields = [
+                        { label: 'নাম', value: nameInput.value.trim(), y: 612 },
+                        { label: 'সেকশন', value: sectionSelect.value, y: 722 },
+                        { label: 'রোল', value: rollSelectEl.value, y: 832 },
+                        { label: 'ব্লাড গ্রুপ', value: bloodSelect.value, y: 942 },
+                        { label: 'মোবাইল', value: '+88' + mobileInput.value, y: 1052 },
+                        { label: 'জেলা', value: districtInput.value.trim(), y: 1162 },
+                        { label: 'টি-শার্ট', value: tshirtSelect.value, y: 1272 },
+                        { label: 'পেমেন্ট', value: getPaymentStatus(), y: 1382 }
+                    ];
+
+                    fields.forEach(field => {
+                        // Label
+                        ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+                        ctx.font = '32px "Noto Sans Bengali", sans-serif';
+                        ctx.fillText(field.label, 540, field.y - 40);
+                        
+                        // Value
+                        ctx.fillStyle = '#ffffff';
+                        ctx.font = 'bold 48px "Noto Sans Bengali", sans-serif';
+                        ctx.fillText(field.value, 540, field.y);
+                    });
+
+                    // Get image data
+                    generatedImageData = canvas.toDataURL('image/png');
+
+                    // Update preview
+                    previewImage.src = generatedImageData;
+                    previewSection.classList.add('visible');
+
+                    // Enable buttons
+                    whatsappBtn.disabled = false;
+                    
+                    // Reset generate button
+                    generateBtn.classList.remove('loading');
+                    generateBtn.innerHTML = 'Generate Card';
+                    generateBtn.disabled = false;
+
+                    // Scroll to preview
+                    setTimeout(() => {
+                        previewSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }, 300);
+                };
+
+                // Try to load the template image
+                templateImg.src = 'card-template.png';
+            });
+
+            // ===== DOWNLOAD FUNCTIONALITY =====
+            downloadBtn.addEventListener('click', function() {
+                if (!generatedImageData) return;
+
+                const link = document.createElement('a');
+                link.download = `${nameInput.value.trim()}_${sectionSelect.value}_Roll${rollSelectEl.value}.png`;
+                link.href = generatedImageData;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            });
+
+            // ===== WHATSAPP FUNCTIONALITY =====
+            whatsappBtn.addEventListener('click', function() {
+                if (!generatedImageData) return;
+
+                const name = nameInput.value.trim();
+                const section = sectionSelect.value;
+                const roll = rollSelectEl.value;
+                const blood = bloodSelect.value;
+                const mobile = mobileInput.value;
+                const district = districtInput.value.trim();
+                const tshirt = tshirtSelect.value;
+                const payment = getPaymentStatus();
+                const package = packageSelect.value;
+
+                // Create message
+                const message = `New Delegate Submission:
+
+Name: ${name}
+Section: ${section}
+Roll: ${roll}
+Blood Group: ${blood}
+Mobile: +88${mobile}
+District: ${district}
+T-shirt Size: ${tshirt}
+Payment Status: ${payment}
+Package: ${package}
+
+I have attached my info card image.`;
+
+                // Encode message
+                const encodedMessage = encodeURIComponent(message);
+
+               
+                const whatsappNumber = '8801602533315';
+
+                // Open WhatsApp
+                const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+                window.open(whatsappUrl, '_blank');
+            });
+
+            // ===== KEYBOARD ACCESSIBILITY =====
+            document.querySelectorAll('.form-input, .form-select, .btn, .payment-label').forEach(el => {
+                el.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' && el.tagName !== 'BUTTON') {
+                        e.preventDefault();
+                        const form = el.closest('form');
+                        const inputs = Array.from(form.querySelectorAll('input, select, button'));
+                        const currentIndex = inputs.indexOf(el);
+                        const nextInput = inputs[currentIndex + 1];
+                        if (nextInput) nextInput.focus();
+                    }
+                });
+            });
+
+            // ===== FOCUS STATES =====
+            document.querySelectorAll('.form-input, .form-select, .btn').forEach(el => {
+                el.addEventListener('focus', function() {
+                    this.style.outline = 'none';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
